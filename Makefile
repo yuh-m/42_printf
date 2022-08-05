@@ -6,39 +6,51 @@
 #    By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/12 21:31:44 by eryudi-m          #+#    #+#              #
-#    Updated: 2022/08/04 23:17:38 by eryudi-m         ###   ########.fr        #
+#    Updated: 2022/08/05 04:16:31 by eryudi-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprint.a
+NAME = libftprintf.a
 
 CC = gcc -c
-
 FLAGS = -Wall -Wextra -Werror
-
 AR = ar -rcs
 
-PATH_SRC = source/
-PATH_INC = include/
+PATH_INCLUDE = ./include
+PATH_SOURCE = ./source
+PATH_OBJECT = ./object
 
-#add the written.c files here
-SRC = $(PATH_SRC)ft_printf.c \
+INCLUDE_FILE = ft_printf.h
+INCLUDE = $(addprefix $(PATH_INCLUDE)/,$(INCLUDE_FILE))
 
-OBJ = $(SRC: .c=.o)
-#don't know if I'll really need the header or I can just put them all together
-#pick the functions of the printf and add to the scr
+SOURCE_FILE = ft_printf.c \
+				ft_print_char.c \
+				ft_print_string.c \
+				ft_print_integer.c
+
+SOURCE = $(addprefix $(PATH_SOURCE)/,$(SOURCE_FILE))
+
+OBJECT_FILE = $(SOURCE_FILE:.c=.o)
+OBJECT = $(addprefix $(PATH_OBJECT)/,$(OBJECT_FILE))
 
 all: $(NAME)
-$(NAME): $(OBJ)
-	$(CC) $(FLAGS) $(SRC)
-	$(AR) $(NAME) $(OBJ)
+$(NAME): $(OBJECT) $(OBJECT_DIR) | $(PATH_OBJECT)
+	$(AR) $(NAME) $(OBJECT)
+
+$(PATH_OBJECT):
+	mkdir -p $(PATH_OBJECT)
+
+$(PATH_OBJECT)/%.o: $(PATH_SOURCE)/%.c | $(PATH_OBJECT)
+	$(CC) $(FLAGS) -I $(PATH_INCLUDE) -o $@ -c $<
 
 clean:
-	@/bin/rm -f $(OBJ)
+	@/bin/rm -rf $(PATH_OBJECT)
 
 fclean: clean
-	@/bin/rm -f $(NAME)
+	@/bin/rm -rf $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+##bonus:
+##add flags as bonus if they will be done
+.PHONY: all clean fclean re make_dir

@@ -6,32 +6,56 @@
 /*   By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 21:31:52 by eryudi-m          #+#    #+#             */
-/*   Updated: 2022/08/04 23:18:07 by eryudi-m         ###   ########.fr       */
+/*   Updated: 2022/08/05 03:59:03 by eryudi-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <unistd.h>
 #include <stdarg.h>
+#include "./../include/printf.h"
 
-//function for how it should be print depending on the argument
+int ft_print_char (char chr);
+int ft_print_string (char *chr);
+int ft_print_integer(int number);
 
+int	assign_print_type(char format, va_list ap)
+{
+	int bytes;
+
+	bytes = 0;
+	if (format == '%')
+		bytes += ft_print_char('%');
+	else if(format == 'c')
+		bytes += ft_print_char(va_arg(ap, int));
+	else if(format == 's')
+		bytes += ft_print_string(va_arg(ap,char*));
+	else if(format == 'i')
+		bytes += ft_print_integer(va_arg(ap, int));
+	/*else if(format == 'd')
+		bytes += ft_print_decimal(va_arg(ap, int));
+*/
+	return(bytes);
+}
 
 int ft_printf(const char *format, ...)
 {
 	va_list	ap;
-	int		i;
+	int		bytes;
 
-	i = 0;
+	bytes = 0;
 	va_start(ap, format);
-
-	while (format[i])
+	while (*format)
 	{
-		write(1 , format, 1);
-		i++;
+		if (*format == '%')
+		{
+			format++;
+			bytes += assign_print_type(*format, ap);
+		}
+		else
+			bytes += ft_print_char(*format);
+		format++;
 	}
-	//check for flags
-	//keep running the function
 	va_end(ap);
-
-	return(i);
+	return(bytes);
 }

@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_print_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/04 00:25:32 by eryudi-m          #+#    #+#             */
-/*   Updated: 2022/08/05 04:14:17 by eryudi-m         ###   ########.fr       */
+/*   Created: 2022/08/05 01:03:24 by eryudi-m          #+#    #+#             */
+/*   Updated: 2022/08/05 03:44:01 by eryudi-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#include "../include/ft_printf.h"
 
-#include <unistd.h>
-#include <stdarg.h>
+void ft_putchar (const char chr)
+{
+	write(1, &chr, 1);
+}
 
-int ft_printf(const char *format, ... );
-void ft_putchar (const char chr);
-int ft_print_char (char chr);
-int	ft_print_string(char *chr);
-int ft_print_integer(int number);
-
-#endif
+int ft_print_char (char chr)
+{
+	ft_putchar(chr);
+	return(1); //maybe it will need to fix the return for this function
+}
