@@ -6,13 +6,13 @@
 #    By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/12 21:31:44 by eryudi-m          #+#    #+#              #
-#    Updated: 2022/08/05 04:16:31 by eryudi-m         ###   ########.fr        #
+#    Updated: 2022/08/06 20:04:14 by eryudi-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-CC = gcc -c
+CC = clang -c
 FLAGS = -Wall -Wextra -Werror
 AR = ar -rcs
 
@@ -26,7 +26,13 @@ INCLUDE = $(addprefix $(PATH_INCLUDE)/,$(INCLUDE_FILE))
 SOURCE_FILE = ft_printf.c \
 				ft_print_char.c \
 				ft_print_string.c \
-				ft_print_integer.c
+				ft_print_integer.c \
+				ft_print_unsigned_int.c \
+				ft_print_pointer.c \
+				ft_itoa.c \
+				ft_itoa_base.c \
+				ft_printf_puts.c \
+				ft_printf_utils.c
 
 SOURCE = $(addprefix $(PATH_SOURCE)/,$(SOURCE_FILE))
 
