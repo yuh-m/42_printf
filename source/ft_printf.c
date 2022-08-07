@@ -6,7 +6,7 @@
 /*   By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 21:31:52 by eryudi-m          #+#    #+#             */
-/*   Updated: 2022/08/06 20:15:42 by eryudi-m         ###   ########.fr       */
+/*   Updated: 2022/08/06 21:20:57 by eryudi-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,8 @@ static int	assign_specifier(char format, va_list ap)
 		bytes += ft_print_unsigned_int(va_arg(ap, unsigned int));
 	else if (format == 'p')
 		bytes += ft_print_pointer(va_arg(ap, void *));
-	else if (format == 'x')
-		bytes += ft_print_pointer(va_arg(ap, void *));
-	else if (format == 'X')
-		bytes += ft_print_pointer(va_arg(ap, void *));
+	else if (format == 'x' || format == 'X')
+		bytes += ft_print_x(va_arg(ap, unsigned int), format);
 	return (bytes);
 }
 

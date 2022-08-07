@@ -6,16 +6,16 @@
 /*   By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 17:36:00 by eryudi-m          #+#    #+#             */
-/*   Updated: 2022/08/06 20:05:01 by eryudi-m         ###   ########.fr       */
+/*   Updated: 2022/08/06 21:27:03 by eryudi-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../include/ft_printf.h"
 
-size_t	int_in_base_len(unsigned long long number, char* base)
+size_t	int_in_base_len(unsigned long long number, char *base)
 {
-	size_t		len;
-	unsigned long baselen;
+	size_t			len;
+	unsigned long	baselen;
 
 	len = 1;
 	baselen = ft_strlen(base);
@@ -27,15 +27,15 @@ size_t	int_in_base_len(unsigned long long number, char* base)
 	return (len);
 }
 
-char	*ft_itoa_base(unsigned long long number, char* base)
+char	*ft_itoa_base(unsigned long long number, char *base)
 {
 	char	*result;
 	int		i;
 	int		base_size;
 
 	base_size = ft_strlen(base);
-	i = int_in_base_len(number, base) + 1;
-	result = (char *) malloc(i);
+	i = int_in_base_len(number, base);
+	result = (char *) malloc(i + 1);
 	if (!result)
 		return (NULL);
 	result[i] = '\0';
@@ -46,10 +46,4 @@ char	*ft_itoa_base(unsigned long long number, char* base)
 		number = number / base_size;
 	}
 	return (result);
-
-
-
-
-
-	return(result);
 }

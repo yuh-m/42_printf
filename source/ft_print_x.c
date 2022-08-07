@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_print_x.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/06 19:12:55 by eryudi-m          #+#    #+#             */
-/*   Updated: 2022/08/06 21:24:50 by eryudi-m         ###   ########.fr       */
+/*   Created: 2022/08/06 21:10:15 by eryudi-m          #+#    #+#             */
+/*   Updated: 2022/08/06 21:24:22 by eryudi-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../include/ft_printf.h"
 
-int	len_unsigned(unsigned int number)
+int	ft_print_x(unsigned int number, char spec)
 {
-	size_t	len;
+	int		bytes;
+	char	*base;
+	char	*hex;
 
-	len = 0;
-	while (number > 9)
+	bytes = 0;
+	if (!number)
 	{
-		number /= 10;
-		len++;
+		bytes = ft_print_string("(nil)");
+		return (bytes);
 	}
-	len++;
-	return ((int) len);
-}
-
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
+	if (spec == 'x')
+		base = "0123456789abcdef";
+	else
+		base = "0123456789ABCDEF";
+	hex = ft_itoa_base((unsigned long) number, base);
+	bytes += ft_print_string(hex);
+	free(hex);
+	return (bytes);
 }

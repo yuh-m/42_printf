@@ -6,20 +6,19 @@
 /*   By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 16:39:23 by eryudi-m          #+#    #+#             */
-/*   Updated: 2022/08/06 20:10:10 by eryudi-m         ###   ########.fr       */
+/*   Updated: 2022/08/06 21:26:13 by eryudi-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../include/ft_printf.h"
 
-int	ft_print_pointer(void * pointer)
+int	ft_print_pointer(void *pointer)
 {
 	char	*base;
 	char	*address;
 	int		bytes;
 
-	bytes = 0;
-	if(!pointer)
+	if (!pointer)
 	{
 		bytes = ft_print_string("(nil)");
 		return (bytes);

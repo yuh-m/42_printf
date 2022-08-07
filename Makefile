@@ -6,7 +6,7 @@
 #    By: eryudi-m <eryudi-m@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/12 21:31:44 by eryudi-m          #+#    #+#              #
-#    Updated: 2022/08/06 20:04:14 by eryudi-m         ###   ########.fr        #
+#    Updated: 2022/08/06 21:22:34 by eryudi-m         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SOURCE_FILE = ft_printf.c \
 				ft_print_integer.c \
 				ft_print_unsigned_int.c \
 				ft_print_pointer.c \
+				ft_print_x.c \
 				ft_itoa.c \
 				ft_itoa_base.c \
 				ft_printf_puts.c \
